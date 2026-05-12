@@ -29,6 +29,10 @@ mcp = FastMCP("FakeStore MCP Server")
 
 BASE_URL = "https://fakestoreapi.com/products"
 
+HEADERS = {
+    "User-Agent": "Mozilla/5.0",
+    "Accept": "application/json",
+}
 
 # -------------------------------------------------------------------
 # Tool 1: Get Products
@@ -44,15 +48,14 @@ async def get_products(limit: int = 10) -> List[Dict[str, Any]]:
     Returns:
         List of products
     """
-
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(headers=HEADERS) as client:
         response = await client.get(BASE_URL)
 
         response.raise_for_status()
 
         products = response.json()
 
-        return products[:limit]
+    return products[:limit]
 
 
 # -------------------------------------------------------------------
