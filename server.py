@@ -98,5 +98,8 @@ async def search_products(query: str) -> List[Dict[str, Any]]:
 # Start MCP server
 # -------------------------------------------------------------------
 if __name__ == "__main__":
-    # stdio transport works with Claude Desktop and ChatGPT connectors
-    mcp.run()
+    mcp.run(
+        transport="sse",
+        host="0.0.0.0",
+        port=8000
+    )
