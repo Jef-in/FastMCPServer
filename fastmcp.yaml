@@ -1,0 +1,6 @@
+server:
+  entrypoint: server.py
+
+deployment:
+  transport: sse
+  port: 8000
